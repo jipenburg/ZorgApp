@@ -11,14 +11,15 @@ namespace ZorgAppOop
         private ProfileList profileList;
         private MedicijnLijst medicijnLijst;
         private Timer timer;
-
+        private DateTime timeLater;
         //constructor. voert automatisch uit na aanroep met "new ZorgApp()".
         public ZorgApp()
         {
             profileList = new ProfileList();
             medicijnLijst = new MedicijnLijst();
+            timeLater = DateTime.Now.AddSeconds(10);
             timer = new Timer(new TimerCallback(Alarm));
-            timer.Change(1000, 0);
+            timer.Change(2000, 1000);
             DisplayMenu();
         }
         
@@ -164,9 +165,10 @@ namespace ZorgAppOop
 
         public void Alarm(object state) 
         { 
-            if (DateTime.Compare(DateTime.Now, DateTime.Now.AddSeconds(10)) > 0) 
+            if (DateTime.Compare(DateTime.Now, timeLater) > 0) 
             {
-                Console.WriteLine("Het is tijd om uw medicijn {medicijnNaam} in te nemen.");
+                Console.WriteLine($"Het is {timeLater}\nTijd om uw medicijn  in te nemen.");
+                BeepNoise();
                 Timer t = (Timer)state;
                 t.Dispose();
             }
