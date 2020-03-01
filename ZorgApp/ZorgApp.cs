@@ -6,7 +6,7 @@ using System.Threading;
 namespace ZorgAppOop
 {
     class ZorgApp
-    {
+    {   //test
         //variabels fields
         private ProfileList profileList;
         private MedicijnLijst medicijnLijst;
