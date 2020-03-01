@@ -171,16 +171,19 @@ namespace ZorgAppOop
         }
 
         private void Alarm(object timerObject)
-        { 
-            if (DateTime.Compare(DateTime.Now, dateTimeLater) > 0) 
+        {
+            foreach (Medicijn value in medicijnLijst.medicijnLijst)
             {
-                Console.WriteLine($"\nHet is: {dateTimeLater}\nTijd om uw medicijn in te nemen.");
-                BeepNoise();
-                Timer t = (Timer)timerObject;
-                t.Dispose();
-                Console.WriteLine("Druk op enter om terug naar het menu te gaan...");
-                Console.ReadKey();
-                DisplayMenu();
+                if (DateTime.Compare(DateTime.Now, value.GetDagelijkseMedicatie()) > 0)
+                {
+                    Console.WriteLine($"\nHet is: {DateTime.Now}\nTijd om uw medicijn {value.GetMedicijnNaam()} in te nemen.");
+                    BeepNoise();
+                    Timer t = (Timer)timerObject;
+                    t.Dispose();
+                    Console.WriteLine("Druk op enter om terug naar het menu te gaan...");
+                    Console.ReadKey();
+                }
+
             }
         }
     }
