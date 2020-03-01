@@ -7,23 +7,30 @@ namespace ZorgAppOop
 {
     class ZorgApp
     {
-        //variabels
+        //variabels fields
         private ProfileList profileList;
         private MedicijnLijst medicijnLijst;
         private Timer timer;
-        private DateTime timeLater;
+        private DateTime dateTimeLater;
+
         //constructor. voert automatisch uit na aanroep met "new ZorgApp()".
         public ZorgApp()
         {
             profileList = new ProfileList();
             medicijnLijst = new MedicijnLijst();
-            timeLater = DateTime.Now.AddSeconds(10);
-            timer = new Timer(new TimerCallback(Alarm));
-            timer.Change(2000, 1000);
+            StartTimer();
             DisplayMenu();
         }
-        
+
         //methods
+        private void StartTimer()
+        {
+            dateTimeLater = DateTime.Now.AddSeconds(5);
+            timer = new Timer(new TimerCallback(Alarm));
+            timer.Change(2000, 1000);
+        }
+
+        
         //check in List met foreach zoekend op id match en change de data
         public void EditPatient(int editId)
         {
@@ -71,7 +78,6 @@ namespace ZorgAppOop
             Console.WriteLine("Welkom in het menu");
             Console.WriteLine($"Het is vandaag: {DateTime.Now}\n");
             Console.WriteLine($"Maak een keuze: \n1)Zoeken en bewerken patientgegevens.");
-            Alarm(DateTime.Now.AddSeconds(10));
             var choice = Console.ReadLine();
             if (choice == "1")
             {
@@ -83,7 +89,7 @@ namespace ZorgAppOop
                 {
                     Console.Clear();
                     Console.WriteLine(ProfileToString(classTypeOut));
-                    Console.WriteLine("Wat wil iets bewerken? (y/n)");
+                    Console.WriteLine("Wil iets bewerken? (y/n)");
                     var yesOrNo = Console.ReadLine();
                     if (yesOrNo == "y")
                     {
@@ -163,13 +169,13 @@ namespace ZorgAppOop
             Console.Beep();
         }
 
-        public void Alarm(object state) 
+        public void Alarm(object timerObject)
         { 
-            if (DateTime.Compare(DateTime.Now, timeLater) > 0) 
+            if (DateTime.Compare(DateTime.Now, dateTimeLater) > 0) 
             {
-                Console.WriteLine($"Het is {timeLater}\nTijd om uw medicijn  in te nemen.");
+                Console.WriteLine($"\nHet is: {dateTimeLater}\nTijd om uw medicijn in te nemen.");
                 BeepNoise();
-                Timer t = (Timer)state;
+                Timer t = (Timer)timerObject;
                 t.Dispose();
             }
         }
