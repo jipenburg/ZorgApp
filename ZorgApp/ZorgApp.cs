@@ -90,7 +90,7 @@ namespace ZorgAppOop
                 {
                     Console.Clear();
                     Console.WriteLine(ProfileToString(classTypeOut));
-                    Console.WriteLine("Wil iets bewerken? (y/n)");
+                    Console.WriteLine("Wil je iets bewerken? (y/n)");
                     var yesOrNo = Console.ReadLine();
                     if (yesOrNo == "y")
                     {
@@ -154,7 +154,7 @@ namespace ZorgAppOop
                 //List<Medicijn> medicijnLijst
                 int medicijnIndex = medicijnLijst.medicijnLijst.FindIndex(objectMedicijn => objectMedicijn.GetMedicijnId() == profileMedicijnId);
                 Medicijn medicijn = medicijnLijst.medicijnLijst[medicijnIndex];
-                medicijnData += $"\n\n{medicijn.GetMedicijnNaam()}\n{medicijn.GetOmschrijving()}\n{medicijn.GetSoort()}\n{medicijn.GetDosering()}";
+                medicijnData += $"\n\n{medicijn.GetMedicijnNaam()}\nOmschrijving: {medicijn.GetOmschrijving()}\nSoort: {medicijn.GetSoort()}\nDosering: {medicijn.GetDosering()}";
 
             }
             
@@ -182,6 +182,7 @@ namespace ZorgAppOop
                     t.Dispose();
                     Console.WriteLine("Druk op enter om terug naar het menu te gaan...");
                     Console.ReadKey();
+                    return;
                 }
 
             }
