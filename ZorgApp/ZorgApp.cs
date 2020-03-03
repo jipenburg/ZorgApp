@@ -101,26 +101,23 @@ namespace ZorgAppOop
                     }
                     else 
                     { 
-                      BeepNoise();
                       goto Menu;
                     }
                 }
                 else 
                 {
-                    BeepNoise();
                     goto Menu;
                 }
             }
             else if (choice == "2")
             {
                 Console.Clear();
+                Console.WriteLine("Patientenlijst: ");
                 ShowAllProfiles();
-                
-
+                goto Menu;
             }
             else
             {
-                BeepNoise();
                 goto Menu;
             }
 
@@ -199,9 +196,11 @@ namespace ZorgAppOop
         {
             foreach (Profile profile in profileList.profileList)
             {
-                Console.WriteLine($"{profile.GetVoornaam()}{profile.GetAchternaam()}");
-
+                Console.WriteLine($"Voornaam: {profile.GetVoornaam()}\nAchternaam: {profile.GetAchternaam()}\nLeeftijd: {profile.GetLeeftijd()}\nLengte: {profile.GetLengte()}\nGewicht: {profile.GetGewicht()}\n\n");
+                
             }
+            Console.ReadKey();
+            return;
         }
     }
 }
