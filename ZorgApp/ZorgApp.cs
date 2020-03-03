@@ -79,6 +79,7 @@ namespace ZorgAppOop
             Console.WriteLine("Welkom in het menu");
             Console.WriteLine($"Het is vandaag: {DateTime.Now}\n");
             Console.WriteLine($"Maak een keuze: \n1)Zoeken en bewerken patientgegevens.");
+            Console.WriteLine($"2)Patientenlijst tonen. ");
             var choice = Console.ReadLine();
             if (choice == "1")
             {
@@ -109,6 +110,13 @@ namespace ZorgAppOop
                     BeepNoise();
                     goto Menu;
                 }
+            }
+            else if (choice == "2")
+            {
+                Console.Clear();
+                ShowAllProfiles();
+                
+
             }
             else
             {
@@ -184,6 +192,14 @@ namespace ZorgAppOop
                     Console.ReadKey();
                     return;
                 }
+
+            }
+        }
+        private void ShowAllProfiles()
+        {
+            foreach (Profile profile in profileList.profileList)
+            {
+                Console.WriteLine($"{profile.GetVoornaam()}{profile.GetAchternaam()}");
 
             }
         }

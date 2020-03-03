@@ -20,8 +20,9 @@ namespace ZorgAppOop
         public ProfileList() 
         {
             profileList = new List<Profile>();
-            profileList.Add(new Profile(1, new int[] {3 , 4}, "Frank", "Krijnen", 26, 65.15, 1.80));
-            profileList.Add(new Profile(2, new int[] {1 , 2 , 3},"Joel", "Ipenburg", 27, 83.64, 1.88));
+            profileList.Add(new Profile(1, new int[] {3 , 4}, "Frank", "Krijnen", 26, 45.15, 1.77));
+            profileList.Add(new Profile(2, new int[] {1 , 2 , 3},"Joel", "Ipenburg", 27, 81, 1.88));
+
         }
        
 
